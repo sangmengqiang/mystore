@@ -88,26 +88,26 @@ export default new Router({
       name: 'Admin',
       component: Admin,
       // 加上导航守卫
-      // beforeEnter:(to,from,next)=>{
-      //   alert('您正在进入admin页面，请确保有操作权限')
-      //   // 表示继续，允许进入当前路由
-      //   // next()
-      //   // 表示不允许进入
-      //   // next(false)
-      //   // 表示跳转到相应页面
-      //   // next('/register')
+      beforeEnter:(to,from,next)=>{
+        alert('您正在进入admin页面，请确保有操作权限')
+        // 表示继续，允许进入当前路由
+        // next()
+        // 表示不允许进入
+        // next(false)
+        // 表示跳转到相应页面
+        // next('/register')
         
-      //   //to到哪里去
-      //   //from从哪里来
-      //   var login=true
-      //   if(login){
-      //     next()
-      //   }else{
-      //     alert('您还没有登陆，请先登陆')
-      //     alert('页面正在跳转....')
-      //     next('/login')
-      //   }
-      // }
+        //to到哪里去
+        //from从哪里来
+        var login=true
+        if(login){
+          next()
+        }else{
+          alert('您还没有登陆，请先登陆')
+          alert('页面正在跳转....')
+          next('/login')
+        }
+      }
     },
     {
       path: '/login',

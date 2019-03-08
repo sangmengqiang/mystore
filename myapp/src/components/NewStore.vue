@@ -25,7 +25,7 @@ export default {
     name:'NewStore',
     data(){
         return{
-            items:[]
+            // items:[]
         }
     },
     mounted(){
@@ -33,13 +33,19 @@ export default {
         axios.get('./menu-smq.json')
         .then(res=>{
             console.log(res.data)
+
+            var menus = []
             for(var key in res.data){
                 console.log(key)
                 var item = res.data[key]
                 item.id=key
-                that.items.push(item)
+                // that.items.push(item)
+                // 用当前的menu来实现数据的管理
+                menus.push(res.data[key])
             }
-            console.log(that.items)
+            console.log(menus)
+
+            that.$store.commit('setMenuItems',menus)
             
             
         })
@@ -49,8 +55,14 @@ export default {
             axios.delete('./menu-smq/'+item.id+'.json')
             .then(res=>{
                 console.log('删除成功')
-                this.$router.push('/menu')
+                // this.$router.push('/menu')
+                this.$store.commit('deleteMenuItems',item)
             })
+        }
+    },
+    computed:{
+        items(){
+            return this.$store.getters.getMenuItems
         }
     }
 }

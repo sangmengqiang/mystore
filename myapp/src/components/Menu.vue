@@ -7,7 +7,7 @@
         <thead>
           <tr>
             <th scope="col">规格</th>
-            <th scope="col">价格($/W)</th>
+            <th scope="col">价格</th>
             <th scope="col">装备</th>
           </tr>
         </thead>
@@ -37,7 +37,7 @@
           <tr>
             <th scope="col">数量</th>
             <th scope="col">规格</th>
-            <th scope="col">价格($/W)</th>
+            <th scope="col">价格</th>
           </tr>
         </thead>
         <template v-if="newItems.length>0">
@@ -77,7 +77,7 @@ export default {
   name: 'Menu',
   data () {
     return {
-      items:{
+      
         // 0:{
         //   name:'战神',
         //   description:'功能强悍,战场利器.',
@@ -106,7 +106,7 @@ export default {
         //     },
         //   ]
         // }
-      },
+    
     //   item:{
     //     0:{
     //       name:'战神X7',
@@ -126,8 +126,8 @@ export default {
   mounted(){
     axios.get('./menu-smq.json')
     .then(res=>{
-      this.items=res.data
-      // this.$store.commit('setMenuItems',res.data)
+      // this.items=res.data
+      this.$store.commit('setMenuItems',res.data)
     })
   },
   methods:{
@@ -174,9 +174,9 @@ export default {
         return sum1+cur.sum*cur.price
       },0)
     },
-    // items(){
-    //   return this.$store.getters.getMenuItems
-    // }
+    items(){
+      return this.$store.getters.getMenuItems
+    }
   }
 }
 </script>

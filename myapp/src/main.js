@@ -14,6 +14,17 @@ import { store } from './store/store'
 axios.defaults.baseURL='https://wd0237726689deztlx.wilddogio.com/'
 Vue.config.productionTip = false
 
+// 全局守卫
+// 当我刚进入localhost:8080的时候，让当前的页面跳转到对应的登录注册页
+router.beforeEach((to,from,next)=>{
+  if(to.path=='/login' || to.path=='/register'){
+    next()
+  }else{
+    alert('对不起，你还没登陆，即将跳转登录页。。。。')
+    next('/login')
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
